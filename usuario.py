@@ -1,18 +1,32 @@
 import json
 
 class Usuario:
-    def __init__(self, id_usuario, nombre_usuario, contrasena_usuario, tipo_usuario):
+    def __init__(self, id_usuario, nombre_usuario, apellido_1_usuario, apellido_2_usuario, telefono_usuario, email_usuario,
+                 horas_semanales_usuario, coste_hora_usuario, puesto_trabajao_usuario, usuario_usuario, contrasena_usuario, tipo_usuario):
         self.id_usuario = id_usuario
         self.nombre_usuario = nombre_usuario
+        self.apellido_1_usuario = apellido_1_usuario
+        self.apellido_2_usuario = apellido_2_usuario
+        self.telefono_usuario = telefono_usuario
+        self.email_usuario = email_usuario
+        self.horas_semanales_usuario = horas_semanales_usuario
+        self.coste_hora_usuario = coste_hora_usuario
+        self.puesto_trabajao_usuario = puesto_trabajao_usuario
+        self.usuario_usuario = usuario_usuario
         self.contrasena_usuario = contrasena_usuario
         self.tipo_usuario = tipo_usuario
 
     def __repr__(self) -> str:
-        return f"Usuario(id_usuario={self.id_usuario}, nombre_usuario={self.nombre_usuario}, contrasena_usuario={self.contrasena_usuario}, tipo_usuario = {self.tipo_usuario})"
-    
+        return f"Usuario(id_usuario={self.id_usuario}, nombre_usuario={self.nombre_usuario}, apellido_1_usuario= {self.apellido_1_usuario}, apellido_2_usuario={self.apellido_2_usuario},
+                telefono_usuario={self.telefono_usuario}, email_usuario={self.email_usuario}, horas_semanales_usuario={self.horas_semanales_usuario},
+                coste_hora_usuario={self.coste_hora_usuario}, puesto_trabajao_usuario={self.puesto_trabajao_usuario}, usuario_usuario={self.usuario_usuario},
+                contrasena_usuario={self.contrasena_usuario}, tipo_usuario={self.tipo_usuario})"
     @classmethod
     def from_json(cls, json_data):
-        return cls(json_data['id_usuario'], json_data['nombre_usuario'], json_data['contrasena_usuario', json_data['tipo_usuario']])
+        return cls(json_data['id_usuario'], json_data['nombre_usuario'], json_data['apellido_1_usuario'], json_data['apellido_2_usuario'], json_data['telefono_usuario'],
+                   json_data['email_usuario'], json_data['horas_semanales_usuario'], json_data['coste_hora_usuario'], json_data['puesto_trabajo_usuario'],
+                   json_data['contador_tareas_usuario'], json_data['contador_proyectos_usuario'], json_data['usuario_usuario'], json_data['contrasena_usuario'],
+                   json_data['tipo_usuario'])
     
 # Función para cargar datos desde un archivo JSON y convertirlos en objetos Usuario
 def cargar_usuarios_desde_json(data):
