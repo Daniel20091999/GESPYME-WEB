@@ -9,32 +9,32 @@
 </head>
 <body>
 
-    <H2>Añade el proyecto:</H2>
+    <H2>Edita el proyecto:</H2>
     <form action="" method="POST"> 
             
         <div class="form-group row">
             <label for="">ID del proyecto</label>
-            <input type="text" id="id" name="id" value="{{proyecto.id_proyecto}}">
+            <input type="text" id="id_proyecto" name="id_proyecto" value="{{proyecto.id_proyecto}}">
             </div>
             
         <div class="form-group row">
             <label for="">Nombre del proyecto</label>
-            <input type="text" id="nombre" name="nombre" value="{{proyecto.nombre_proyecto}}">
+            <input type="text" id="nombre_proyecto" name="nombre_proyecto" value="{{proyecto.nombre_proyecto}}">
             </div>
         
         <div class="form-group row">
             <label for="">Manager del proyecto</label>
-            <input type="text" id="manager" name="manager" value="{{proyecto.manager_proyecto}}">
+            <input type="text" id="manager_proyecto" name="manager_proyecto" value="{{proyecto.manager_proyecto}}">
             </div>
 
         <div class="form-group row">
             <label for="">Empleados del proyecto</label>
-            <input type="text" id="empleados" name="empleados" value="{{proyecto.empleados_proyecto}}">
+            <input type="text" id="empleados_proyecto" name="empleados_proyecto" value="{{proyecto.empleados_proyecto}}">
             </div>
             
         <div class="form-group row">
             <label for="">Tareas del proyecto</label>
-            <input type="text" id="tareas" name="tareas" value="{{proyecto.tareas_proyecto}}">
+            <input type="text" id="tareas_proyecto" name="tareas_proyecto" value="{{proyecto.tareas_proyecto}}">
         </div>
 
         <div class="form-group row">
@@ -44,7 +44,7 @@
     
 
 
-            <button class="btn btn-primary" type="btnAdd">Añadir proyecto</button>
+            <button class="btn btn-primary" type="btnAdd">Enviar</button>
             <a href="\" class="btn btn-primary">Cancelar</a>
         </div>
     </form>

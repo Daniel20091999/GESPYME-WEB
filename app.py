@@ -4,13 +4,16 @@ app = Flask(__name__)
 jsnfile_usuarios = 'usuarios.json'
 jsnfile_tareas = 'tareas.json'
 jsnfile_proyectos = 'proyectos.json'
-
-
+"""
+@app.route("/")
+def index():
+    return render_template("/index.html")
+"""
 @app.route('/', methods=['GET', "POST"])
 def mostrar_usuarios():
     with open(jsnfile_usuarios, 'r') as ps:
         usuarios = json.load(ps)
-    return render_template("index.html")
+    return render_template("mostrar_usuarios.html", usuarios= usuarios)
 
 @app.route('/mostrar_tareas', methods=['GET', "POST"])
 def mostrar_tareas():
@@ -39,7 +42,7 @@ def addFilm():
         coste_hora_usuario = request.form["coste_hora_usuario"]
         puesto_trabajo_usuario = request.form["puesto_trabajo_usuario"]
         usuario_usuario = request.form["usuario_usuario"]
-        contrasena_usuario = request.form["contrasena_usuario¡"]
+        contrasena_usuario = request.form["contrasena_usuario"]
         tipo_usuario = request.form["tipo_usuario"]
         contador_tareas_usuario = 0
         contador_proyectos_usuario = 0
@@ -52,7 +55,7 @@ def addFilm():
                               "usuario_usuario": usuario_usuario, "contrasena_usuario": contrasena_usuario, "tipo_usuario": tipo_usuario})
         with open(jsnfile_usuarios, 'w') as us:
             json.dump(usuarios, us)
-        return redirect('/mostrar_usuarios')
+        return redirect('/')
     
 
 @app.route('/update_usuario/<string:id_usuario>',methods = ['GET','POST'])
@@ -81,7 +84,7 @@ def update_usuario(id_usuario):
                 break
         with open(jsnfile_usuarios, 'w') as ps:
             json.dump(usuarios, ps)
-        return redirect('/mostrar_usuarios')
+        return redirect('/')
 
 
 @app.route('/delete_usuario/<string:id_usuario>')
@@ -94,7 +97,7 @@ def delete_usuaario(id_usuario):
             new_user_list.append(usuario)
     with open(jsnfile_usuarios, 'w') as uw:
         json.dump(new_user_list, uw)
-    return redirect('/mostrar_usuarios')
+    return redirect('/')
 
 @app.route("/add_tarea", methods = ['GET', 'POST'])
 def addTarea():
@@ -112,7 +115,7 @@ def addTarea():
         tareas.append({"id_tarea": id_tarea, "nombre_tarea": nombre_tarea, "fecha_inicio": fecha_inicio,"fecha_fin": fecha_fin,"fecha_limite": fecha_limite ,"estado_tarea": estado_tarea})
         with open(jsnfile_tareas, 'w') as ps:
             json.dump(tareas, ps)
-        return redirect('/mostrar_tareas')
+        return redirect('/')
     
 
 @app.route('/update_tarea/<string:id_tarea>',methods = ['GET','POST'])
@@ -120,8 +123,8 @@ def update_tarea(id_tarea):
     with open(jsnfile_tareas) as ps:
         tareas = json.load(ps)
     if request.method == 'GET':
-        tarea = [x for x in tarea if x['id_tarea'] == id_tarea][0]
-        return render_template("add_tarea.html", tarea=tarea)
+        tarea = [x for x in tareas if x['id_tarea'] == id_tarea][0]
+        return render_template("update_tarea.html", tarea=tarea)
     if request.method == 'POST':
         for tarea in tareas:
             if(tarea['id_tarea'] == id_tarea):
@@ -133,7 +136,7 @@ def update_tarea(id_tarea):
                 break
         with open(jsnfile_tareas, 'w') as ps:
             json.dump(tareas, ps)
-        return redirect('/mostrar_tareas')
+        return redirect('/')
 
 
 @app.route('/delete_tarea/<string:id_tarea>')
@@ -146,14 +149,10 @@ def delete_tarea(id_tarea):
             new_tarea_list.append(tarea)
     with open(jsnfile_tareas, 'w') as uw:
         json.dump(new_tarea_list, uw)
-    return redirect('/mostrar_tareas')
+    return redirect('/')
 
 
-@app.route('/mostrar_proyectos', methods = ["GET", "POST"]) 
-def index():
-    with open(jsnfile_proyectos,"r") as py: #abrir en modo lectura el archivo proyectos,json. with se usa para que no haya errores
-        proyectos = json.load(py)
-    return render_template("index.html", proyectos=proyectos)
+
 
 @app.route('/add_proyecto', methods = ["GET", "POST"])
 def addProyect():
@@ -166,16 +165,17 @@ def addProyect():
         manager_proyecto = request.form["manager_proyecto"]
 
         empleados_proyecto = request.form["empleados_proyecto"]
-        empleados_proyecto= empleados_proyecto.split(",") 
+        empleados_proyecto = empleados_proyecto.split(",") 
 
         tareas_proyecto = request.form["tareas_proyecto"]
         tareas_proyecto = tareas_proyecto.split(",")
+        
         estado_proyecto = request.form["estado_proyecto"]
 
 
         with open(jsnfile_proyectos, "r+") as py: 
             proyectos = json.load(py)
-        proyectos.append({"id_proyecto": id_proyecto, "nombre_proyecto": nombre_proyecto, "manager_proyecto": manager_proyecto, "empledos_proyectos": empleados_proyecto,
+        proyectos.append({"id_proyecto": id_proyecto, "nombre_proyecto": nombre_proyecto, "manager_proyecto": manager_proyecto, "empleados_proyecto": empleados_proyecto,
                           "tareas_proyecto": tareas_proyecto, "estado_proyecto": estado_proyecto})
 
         with open(jsnfile_proyectos, "w") as py: 
@@ -193,8 +193,28 @@ def delete_proyecto(id_proyecto):
             new_proyecto_list.append(proyecto)
     with open(jsnfile_proyectos, 'w') as pw:
         json.dump(new_proyecto_list, pw)
-    return redirect('/mostrar_proyectos')
+    return redirect('/')
 
+
+@app.route('/update_proyecto/<string:id_proyecto>',methods = ['GET','POST'])
+def update_proyecto(id_proyecto):
+    with open(jsnfile_proyectos) as ps:
+        proyectos = json.load(ps)
+    if request.method == 'GET':
+        proyecto = [x for x in proyectos if x['id_proyecto'] == id_proyecto][0]
+        return render_template("update_proyecto.html", proyecto=proyecto)
+    if request.method == 'POST':
+        for proyecto in proyectos:
+            if(proyecto['id_proyecto'] == id_proyecto):
+                proyecto['nombre_proyecto'] = request.form["nombre_proyecto"]
+                proyecto['manager_proyecto'] = request.form["manager_proyecto"]
+                proyecto['empleados_proyecto'] = request.form["empleados_proyecto"]
+                proyecto['tareas_proyecto'] = request.form["tareas_proyecto"]
+                proyecto['estado_proyecto'] = request.form["estado_proyecto"]
+                break
+        with open(jsnfile_proyectos, 'w') as ps:
+            json.dump(proyectos, ps)
+        return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)

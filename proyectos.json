@@ -1,6 +1,1 @@
-[{"id_proyecto": "p0", "manager_proyecto": "Daniel", "nombre_proyecto": "proyecto0", "empleados": ["picaso", "leonardo", "miguel angel"], "tareas_proyecto": ["tarea1", "tarea2", "tarea3"]},
- {"id_proyecto": "p1", "manager_proyecto": "Daniel", "nombre_proyecto": "proyecto1", "empleados": ["SSADF", "FDGG", "FGFD"], "tareas_proyecto": ["tarea2.1", "tarea2.2", "tarea2.3"]},
-  {"id_proyecto": "p3", "manager_proyecto": "Dani", "nombre_proyecto": "Proyecto a\u00f1adido", "empleados": "Pepe,Juan,Maria", "tareas_proyecto": ["Limpiar,Recoger,Registrar"]},
-   {"id_proyecto": "p4", "manager_proyecto": "Dani", "nombre_proyecto": "Proyecto a\u00f1adido2", "empleados": ["Pepe", "Juan", "Maria"], "tareas_proyecto": ["Limpiar", "Recoger", "Registrar"]},
-    { "id_proyecto": "p5", "manager_proyecto": "Jesulin", "nombre_proyecto": "proyecto 5 prueba", "empleados": ["marta", " jesus", " ramon"], "tareas_proyecto": ["tarea1", " tarea2", " tarea3"]}
-]
+[{"empleados_proyecto": "empleado1, empleado 2", "empledos_proyecto": "empleado1", "estado_proyecto": "pendiente", "id_proyecto": "!", "manager_proyecto": "manager", "nombre_proyecto": "proyecto 1", "tareas_proyecto": "tarea1, tarea 2"}]

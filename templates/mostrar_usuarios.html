@@ -13,7 +13,8 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nombre Usuario</th>
-                <th scope="col">Contraseña</th>
+                <th scope="col">Primer Apellido</th>
+                <th scope="col">segundo Apellido</th>
                 <th scope="col">Tipo Usuario</th>
             </tr>
         </thead>
@@ -22,7 +23,8 @@
             <tr>
                 <td>{{ usuario.id_usuario }}</td>
                 <td>{{ usuario.nombre_usuario }}</td>
-                <td>{{  usuario.contrasena_usuario }}</td>
+                <td>{{  usuario.apellido_1_usuario }}</td>
+                <td>{{  usuario.apellido_2_usuario }}</td>
                 <td>{{  usuario.tipo_usuario }}</td>
                 <td><a href='update_usuario/{{ usuario.id_usuario}}'>Editar</a></td>
                 <td><a href='delete_usuario/{{ usuario.id_usuario }}'>Borrar</a></td>
