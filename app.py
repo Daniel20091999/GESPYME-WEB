@@ -36,7 +36,7 @@ def update_tarea(id_tarea):
         tareas = json.load(ps)
     if request.method == 'GET':
         tarea = [x for x in tareas if x['id_tarea'] == id_tarea][0]
-        return render_template("add_tarea.html", tarea=tarea)
+        return render_template("update_tarea.html", tarea=tarea)
     if request.method == 'POST':
         for tarea in tareas:
             if(tarea['id_tarea'] == id_tarea):
