@@ -1,1 +1,1 @@
-[{"contrasena_usuario": "manager", "id_usuario": "1", "nombre_usuario": "manager", "tipo_usuario": "manager"}, {"contrasena_usuario": "worker", "id_usuario": "2", "nombre_usuario": "worker", "tipo_usuario": "worker"}, {"contrasena_usuario": "antonio", "id_usuario": "3", "nombre_usuario": "jose", "tipo_usuario": "worker"}]
+[{"nombre_proyecto":"proyecto1", "id_proyecto": "1", "estado_proyecto":"Iniciado"},{"nombre_proyecto":"proyecto2", "id_proyectp": "2", "estado_proyecto":"Finalizado"}]
