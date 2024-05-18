@@ -3,19 +3,26 @@ from flask import Flask, request, render_template, json, redirect
 app = Flask(__name__)
 jsnfile_usuarios = 'usuarios.json'
 jsnfile_tareas = 'tareas.json'
+jsnfile_proyectos = 'proyectos.json'
 
 
 @app.route('/', methods=['GET', "POST"])
 def mostrar_usuarios():
     with open(jsnfile_usuarios, 'r') as ps:
         usuarios = json.load(ps)
-    return render_template("mostrar_usuarios.html",  usuarios=usuarios)
+    return render_template("index.html")
 
 @app.route('/mostrar_tareas', methods=['GET', "POST"])
 def mostrar_tareas():
     with open(jsnfile_tareas, 'r') as ps:
         tareas = json.load(ps)
     return render_template("mostrar_tareas.html",  tareas=tareas)
+
+@app.route('/mostrar_proyectos', methods=['GET', "POST"])
+def mostrar_proyectos():
+    with open(jsnfile_proyectos, 'r') as ps:
+        proyectos = json.load(ps)
+    return render_template("mostrar_proyectos.html",  proyectos=proyectos)
 
 @app.route("/add_usuario", methods = ['GET', 'POST'])
 def addFilm():
@@ -45,7 +52,7 @@ def addFilm():
                               "usuario_usuario": usuario_usuario, "contrasena_usuario": contrasena_usuario, "tipo_usuario": tipo_usuario})
         with open(jsnfile_usuarios, 'w') as us:
             json.dump(usuarios, us)
-        return redirect('/')
+        return redirect('/mostrar_usuarios')
     
 
 @app.route('/update_usuario/<string:id_usuario>',methods = ['GET','POST'])
@@ -74,7 +81,7 @@ def update_usuario(id_usuario):
                 break
         with open(jsnfile_usuarios, 'w') as ps:
             json.dump(usuarios, ps)
-        return redirect('/')
+        return redirect('/mostrar_usuarios')
 
 
 @app.route('/delete_usuario/<string:id_usuario>')
@@ -87,7 +94,7 @@ def delete_usuaario(id_usuario):
             new_user_list.append(usuario)
     with open(jsnfile_usuarios, 'w') as uw:
         json.dump(new_user_list, uw)
-    return redirect('/')
+    return redirect('/mostrar_usuarios')
 
 @app.route("/add_tarea", methods = ['GET', 'POST'])
 def addTarea():
@@ -105,7 +112,7 @@ def addTarea():
         tareas.append({"id_tarea": id_tarea, "nombre_tarea": nombre_tarea, "fecha_inicio": fecha_inicio,"fecha_fin": fecha_fin,"fecha_limite": fecha_limite ,"estado_tarea": estado_tarea})
         with open(jsnfile_tareas, 'w') as ps:
             json.dump(tareas, ps)
-        return redirect('/')
+        return redirect('/mostrar_tareas')
     
 
 @app.route('/update_tarea/<string:id_tarea>',methods = ['GET','POST'])
@@ -126,7 +133,7 @@ def update_tarea(id_tarea):
                 break
         with open(jsnfile_tareas, 'w') as ps:
             json.dump(tareas, ps)
-        return redirect('/')
+        return redirect('/mostrar_tareas')
 
 
 @app.route('/delete_tarea/<string:id_tarea>')
@@ -139,7 +146,54 @@ def delete_tarea(id_tarea):
             new_tarea_list.append(tarea)
     with open(jsnfile_tareas, 'w') as uw:
         json.dump(new_tarea_list, uw)
-    return redirect('/')
+    return redirect('/mostrar_tareas')
+
+
+@app.route('/mostrar_proyectos', methods = ["GET", "POST"]) 
+def index():
+    with open(jsnfile_proyectos,"r") as py: #abrir en modo lectura el archivo proyectos,json. with se usa para que no haya errores
+        proyectos = json.load(py)
+    return render_template("index.html", proyectos=proyectos)
+
+@app.route('/add_proyecto', methods = ["GET", "POST"])
+def addProyect():
+    if request.method == "GET":
+        return render_template("add_proyecto.html", proyecto={})
+
+    if request.method == "POST":
+        id_proyecto = request.form["id_proyecto"]
+        nombre_proyecto = request.form["nombre_proyecto"]
+        manager_proyecto = request.form["manager_proyecto"]
+
+        empleados_proyecto = request.form["empleados_proyecto"]
+        empleados_proyecto= empleados_proyecto.split(",") 
+
+        tareas_proyecto = request.form["tareas_proyecto"]
+        tareas_proyecto = tareas_proyecto.split(",")
+        estado_proyecto = request.form["estado_proyecto"]
+
+
+        with open(jsnfile_proyectos, "r+") as py: 
+            proyectos = json.load(py)
+        proyectos.append({"id_proyecto": id_proyecto, "nombre_proyecto": nombre_proyecto, "manager_proyecto": manager_proyecto, "empledos_proyectos": empleados_proyecto,
+                          "tareas_proyecto": tareas_proyecto, "estado_proyecto": estado_proyecto})
+
+        with open(jsnfile_proyectos, "w") as py: 
+            json.dump(proyectos,py) 
+        
+        return redirect("/")
+
+@app.route('/delete_proyecto/<string:id_proyecto>')
+def delete_proyecto(id_proyecto):
+    with open(jsnfile_proyectos) as ps:
+        proyectos = json.load(ps)
+    new_proyecto_list = []
+    for proyecto in proyectos:
+        if(proyecto['id_proyecto'] != id_proyecto):
+            new_proyecto_list.append(proyecto)
+    with open(jsnfile_proyectos, 'w') as pw:
+        json.dump(new_proyecto_list, pw)
+    return redirect('/mostrar_proyectos')
 
 
 if __name__ == "__main__":
