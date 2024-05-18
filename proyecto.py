@@ -35,8 +35,8 @@ if __name__ == "__main__":
         print(proyecto)
 
     # Modificar un usuario (por ejemplo, cambiar el nombre de usuario)
-    tareas[0].nombre_tarea = "Tarea3"
+    proyectos[0].nombre_proyecto = "Proyecto3"
 
     # Guardar las películas modificadas de vuelta al archivo JSON
-    guardar_tareas_en_json(tareas, 'data.json')
+    guardar_proyectos_en_json(proyectos, 'data.json')
     
