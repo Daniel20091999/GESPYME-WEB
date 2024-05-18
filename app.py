@@ -35,7 +35,7 @@ def update_tarea(id_tarea):
     with open(jsnfile) as ps:
         tareas = json.load(ps)
     if request.method == 'GET':
-        tarea = [x for x in tarea if x['id_tarea'] == id_tarea][0]
+        tarea = [x for x in tareas if x['id_tarea'] == id_tarea][0]
         return render_template("add_tarea.html", tarea=tarea)
     if request.method == 'POST':
         for tarea in tareas:
