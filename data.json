@@ -1,1 +1,1 @@
-[{"nombre_proyecto":"proyecto1", "id_proyecto": "1", "estado_proyecto":"Iniciado"},{"nombre_proyecto":"proyecto2", "id_proyectp": "2", "estado_proyecto":"Finalizado"}]
+[{"id_proyecto": "1", "nombre_proyecto": "proyecto1" , "estado proyecto": "activo"}, { "id_proyectp": "2", "nombre_proyecto": "proyecto2", "estado_proyecto": "Finalizado"}, { "id_proyecto": "3", "nombre_proyecto": "lunar", "estado_proyecto": "activo"}]
