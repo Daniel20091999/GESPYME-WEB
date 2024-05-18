@@ -14,19 +14,16 @@ def index():
 @app.route("/add_proyecto", methods = ['GET', 'POST'])
 def addProyecto():
     if request.method == 'GET':
-        return render_template('update_tarea.html',tarea={})
+        return render_template('add_proyecto.html',tarea={})
     if request.method == 'POST':
-        id_tarea = request.form["id_tarea"]
-        nombre_tarea = request.form["nombre_tarea"]
-        fecha_inicio = request.form["fecha_inicio"]
-        fecha_fin = request.form["fecha_fin"]
-        fecha_limite = request.form["fecha_limite"]
-        estado_tarea = request.form["estado_tarea"]
+        id_proyecto = request.form["id_proyecto"]
+        nombre_proyecto = request.form["nombre_proyecto"]        
+        estado_proyecto = request.form["estado_proyecto"]
         with open(jsnfile, 'r+') as ps:
-            tareas = json.load(ps)
-        tareas.append({"id_tarea": id_tarea, "nombre_tarea": nombre_tarea, "fecha_inicio": fecha_inicio,"fecha_fin": fecha_fin,"fecha_limite": fecha_limite ,"estado_tarea": estado_tarea})
+            proyectos = json.load(ps)
+        proyectos.append({"id_proyecto": id_proyecto, "nombre_proyecto": nombre_proyecto, "estado_proyecto": estado_proyecto})
         with open(jsnfile, 'w') as ps:
-            json.dump(tareas, ps)
+            json.dump(proyectos, ps)
         return redirect('/')
     
 
