@@ -1,2 +1,0 @@
-[{"id_tarea" : "1", "nombre_tarea": "tarea1", "fecha_inicio": "05/05/2024", "fecha_fin": "06/05/2024", "fecha_limite": "07/05/2024", "estado_tarea": "finalizado"},
-{"id_tarea" : "2", "nombre_tarea": "tarea2", "fecha_inicio": "06/07/2024", "fecha_fin": "07/07/2024", "fecha_limite": "10/05/2024", "estado_tarea": "pendiente"}]
