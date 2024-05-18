@@ -28,7 +28,7 @@ def guardar_proyectos_en_json(proyectos, data):
 # Ejemplo de uso
 if __name__ == "__main__":
     # Cargar datos desde el archivo JSON
-    tareas = cargar_proyectos_desde_json('data.json')
+    proyectos = cargar_proyectos_desde_json('data.json')
 
     # Imprimir los usuarios cargadas
     for proyecto in proyectos:
