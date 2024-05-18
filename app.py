@@ -27,24 +27,21 @@ def addProyecto():
         return redirect('/')
     
 
-@app.route('/update_tarea/<string:id_tarea>',methods = ['GET','POST'])
-def update_tarea(id_tarea):
+@app.route('/update_proyecto/<string:id_proyecto>',methods = ['GET','POST'])
+def update_proyecto(id_proyecto):
     with open(jsnfile) as ps:
-        tareas = json.load(ps)
+        proyectos = json.load(ps)
     if request.method == 'GET':
-        tarea = [x for x in tareas if x['id_tarea'] == id_tarea][0]
-        return render_template("update_tarea.html", tarea=tarea)
+        proyecto = [x for x in proyectos if x['id_proyecto'] == id_proyecto][0]
+        return render_template("update_proyecto.html", proyecto=proyecto)
     if request.method == 'POST':
-        for tarea in tareas:
-            if(tarea['id_tarea'] == id_tarea):
-                tarea['nombre_tarea'] = request.form["nombre_tarea"]
-                tarea['fecha_inicio'] = request.form["fecha_inicio"]
-                tarea['fecha_fin'] = request.form["fecha_fin"]
-                tarea['fecha_fecha_limite'] = request.form["fecha_limite"]
-                tarea['estado_tarea'] = request.form["estado_tarea"]
+        for proyecto in proyectos:
+            if(proyecto['id_proyecto'] == id_proyecto):
+                proyecto['nombre_proyecto'] = request.form["nombre_proyecto"]                
+                proyecto['estado_proyecto'] = request.form["estado_proyecto"]
                 break
         with open(jsnfile, 'w') as ps:
-            json.dump(tareas, ps)
+            json.dump(proyectos, ps)
         return redirect('/')
 
 
