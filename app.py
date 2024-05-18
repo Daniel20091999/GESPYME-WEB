@@ -45,16 +45,16 @@ def update_proyecto(id_proyecto):
         return redirect('/')
 
 
-@app.route('/delete_tarea/<string:id_tarea>')
-def delete_tarea(id_tarea):
+@app.route('/delete_proyecto/<string:id_proyecto>')
+def delete_proyecto(id_proyecto):
     with open(jsnfile) as ps:
-        tareas = json.load(ps)
-    new_tarea_list = []
-    for tarea in tareas:
-        if(tarea['id_tarea'] != id_tarea):
-            new_tarea_list.append(tarea)
+        proyectos = json.load(ps)
+    new_proyecto_list = []
+    for proyecto in proyectos:
+        if(proyecto['id_proyecto'] != id_proyecto):
+            new_proyecto_list.append(proyecto)
     with open(jsnfile, 'w') as uw:
-        json.dump(new_tarea_list, uw)
+        json.dump(new_proyecto_list, uw)
     return redirect('/')
 
 if __name__ == "__main__":
