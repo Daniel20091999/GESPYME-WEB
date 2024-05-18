@@ -31,7 +31,7 @@ if __name__ == "__main__":
     tareas = cargar_proyectos_desde_json('data.json')
 
     # Imprimir los usuarios cargadas
-    for proyecto in proyectos: # type: ignore
+    for proyecto in proyectos:
         print(proyecto)
 
     # Modificar un usuario (por ejemplo, cambiar el nombre de usuario)
