@@ -14,7 +14,7 @@ def index():
 @app.route("/add_tarea", methods = ['GET', 'POST'])
 def addTarea():
     if request.method == 'GET':
-        return render_template('add_tarea.html',tarea={})
+        return render_template('update_tarea.html',tarea={})
     if request.method == 'POST':
         id_tarea = request.form["id_tarea"]
         nombre_tarea = request.form["nombre_tarea"]
