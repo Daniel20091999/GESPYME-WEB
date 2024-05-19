@@ -1,4 +1,6 @@
 from flask import Flask, request, render_template, json, redirect
+from datetime import datetime as dt
+from wtforms import  SelectField
 
 app = Flask(__name__)
 jsnfile_usuarios = 'usuarios.json'
@@ -128,10 +130,10 @@ def update_tarea(id_tarea):
     if request.method == 'POST':
         for tarea in tareas:
             if(tarea['id_tarea'] == id_tarea):
-                tarea['nombre_tarea'] = request.form["nombre_tarea"]
-                tarea['fecha_inicio'] = request.form["fecha_inicio"]
-                tarea['fecha_fin'] = request.form["fecha_fin"]
-                tarea['fecha_fecha_limite'] = request.form["fecha_limite"]
+                tarea['nombre_tarea'] = dt.strftime(request.form["nombre_tarea"])
+                tarea['fecha_inicio'] = dt.strftime(request.form["fecha_inicio"])
+                tarea['fecha_fin'] = dt.strftime(request.form["fecha_fin"])
+                tarea['fecha_fecha_limite'] = dt.strftime(request.form["fecha_limite"])
                 tarea['estado_tarea'] = request.form["estado_tarea"]
                 break
         with open(jsnfile_tareas, 'w') as ps:
@@ -206,6 +208,7 @@ def update_proyecto(id_proyecto):
     if request.method == 'POST':
         for proyecto in proyectos:
             if(proyecto['id_proyecto'] == id_proyecto):
+                proyecto['id_proyecto'] = request.form['id_proyecto']
                 proyecto['nombre_proyecto'] = request.form["nombre_proyecto"]
                 proyecto['manager_proyecto'] = request.form["manager_proyecto"]
                 proyecto['empleados_proyecto'] = request.form["empleados_proyecto"]
