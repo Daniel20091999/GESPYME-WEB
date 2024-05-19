@@ -1,17 +1,45 @@
-from flask import Flask, request, render_template, json, redirect
+from flask import Flask, request, render_template, json, redirect, flash
 from datetime import datetime as dt
-from wtforms import  SelectField
 
 app = Flask(__name__)
 jsnfile_usuarios = 'usuarios.json'
 jsnfile_tareas = 'tareas.json'
 jsnfile_proyectos = 'proyectos.json'
-"""
-@app.route("/")
+
+#definimos un app route para el inciio de sesión del usuario
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        #comprobamos si el usuario existe en el archivo json
+        with open(jsnfile_usuarios, 'r') as f:
+            usuarios = json.load(f)
+            for usuario in usuarios:
+                if usuario['usuario_usuario'] == username and usuario['contrasena_usuario'] == password:
+                    #si el usuario existe, lo redirigimos a la página principal
+                    flash("Iniciando sesión corectamente", 'success')
+                    return redirect('/index')
+                else:
+                    flash("Usuario o contraseña incorrecta", 'danger')
+                    #si el usuario no existe, lo redirigimos a la página de inicio
+                    return redirect('/')
+    else:
+        return render_template('login.html')
+
+#definimos el app route de index
+@app.route('/index', methods=['GET', 'POST'])
 def index():
-    return render_template("/index.html")
-"""
-@app.route('/', methods=['GET', "POST"])
+    return render_template('index.html')
+    
+
+            
+                    
+
+    
+
+
+@app.route('/mostrar_usuarios', methods=['GET', "POST"])
 def mostrar_usuarios():
     with open(jsnfile_usuarios, 'r') as ps:
         usuarios = json.load(ps)
