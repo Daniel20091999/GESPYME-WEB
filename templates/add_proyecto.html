@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir proyecto</title>
+    <link rel="stylesheet" crossorigin="anonymous"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+</head>
+<body>
+
+    <H2>Añade el proyecto:</H2>
+    <form action="" method="POST"> 
+            
+        <div class="form-group row">
+            <label for="">ID del proyecto</label>
+            <input type="text" id="id_proyecto" name="id_proyecto" value="{{proyecto.id_proyecto}}">
+            </div>
+            
+        <div class="form-group row">
+            <label for="">Nombre del proyecto</label>
+            <input type="text" id="nombre" name="nombre_proyecto" value="{{proyecto.nombre_proyecto}}">
+            </div>
+        
+        <div class="form-group row">
+            <label for="">Manager del proyecto</label>
+            <input type="text" id="manager_proyecto" name="manager_proyecto" value="{{proyecto.manager_proyecto}}">
+            </div>
+
+        <div class="form-group row">
+            <label for="">Empleados del proyecto</label>
+            <input type="text" id="empleados_proyecto" name="empleados_proyecto" value="{{proyecto.empleados_proyecto}}">
+            </div>
+            
+        <div class="form-group row">
+            <label for="">Tareas del proyecto</label>
+            <input type="text" id="tareas_proyecto" name="tareas_proyecto" value="{{proyecto.tareas_proyecto}}">
+        </div>
+
+        <div class="form-group row">
+            <label for="">Estado proyecto</label>
+            <input type="text" id="estado_proyecto" name="estado_proyecto" value="{{proyecto.estado_proyecto}}">
+        </div>
+        <button class="btn btn-primary" type="submit">Añadir Proyecto</button>
+        <a class="btn btn-primary" href="/">Cancelar</a>
+    </form>
+
+    <script crossorigin="anonymous"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" >
+    </script>
+</body>
+</html>

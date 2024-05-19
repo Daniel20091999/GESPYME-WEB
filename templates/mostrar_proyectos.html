@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titulo de nuestra página web (es lo que aparece en la pestaña)</title>
+    <!-- Aquí se pone todo lo que no aparece en el viewboard (lo que no ve el usuario que abre la página web) -->
+    <link rel="stylesheet" crossorigin="anonymous"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Manager</th>
+                <th scope="col">Empleados</th>
+                <th scope="col">Tareas</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proyecto in proyectos %}
+            <tr>
+                <td>{{proyecto.id_proyecto}}</td>
+                <td>{{proyecto.nombre_proyecto}}</td>
+                <td>{{proyecto.manager_proyecto}}</td>
+                <td>{{proyecto.empleados_proyecto}}</td>
+                <td>{{proyecto.tareas_proyecto}}</td>
+                <td>{{proyecto.estado_proyecto}}</td>
+                <td><a href='update_proyecto/{{ proyecto.id_proyecto }}'>Editar</a></td>
+                <td><a href='delete_proyecto/{{ proyecto.id_proyecto }}'>Borrar</a></td>
+            </tr>
+            {% endfor %} <!-- para pcerrar el bloque jinja2 -->
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/add_proyecto">Añadir Proyecto</a>
+    <script crossorigin="anonymous"
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" >
+	</script>
+
+ 
+
+</body>
+</html>
