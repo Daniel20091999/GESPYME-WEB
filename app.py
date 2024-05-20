@@ -1,17 +1,16 @@
 from flask import Flask, request, render_template, json, redirect
 from datetime import datetime as dt
-from wtforms import  SelectField
 
 app = Flask(__name__)
 jsnfile_usuarios = 'usuarios.json'
 jsnfile_tareas = 'tareas.json'
 jsnfile_proyectos = 'proyectos.json'
-"""
+
 @app.route("/")
 def index():
     return render_template("/index.html")
-"""
-@app.route('/', methods=['GET', "POST"])
+
+@app.route('/mostrar_usuarios', methods=['GET', "POST"])
 def mostrar_usuarios():
     with open(jsnfile_usuarios, 'r') as ps:
         usuarios = json.load(ps)

@@ -1,40 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" crossorigin="anonymous"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+    <title>Usuarios</title>
+    <link rel="icon" href="/static/logo/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre Usuario</th>
-                <th scope="col">Primer Apellido</th>
-                <th scope="col">segundo Apellido</th>
-                <th scope="col">Tipo Usuario</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for usuario in usuarios %}
-            <tr>
-                <td>{{ usuario.id_usuario }}</td>
-                <td>{{ usuario.nombre_usuario }}</td>
-                <td>{{  usuario.apellido_1_usuario }}</td>
-                <td>{{  usuario.apellido_2_usuario }}</td>
-                <td>{{  usuario.tipo_usuario }}</td>
-                <td><a href='update_usuario/{{ usuario.id_usuario}}'>Editar</a></td>
-                <td><a href='delete_usuario/{{ usuario.id_usuario }}'>Borrar</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a class="btn btn-primary" href="/add_usuario">Añadir Usuario</a>
-    <script crossorigin="anonymous"
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" >
-	</script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="\static\logo\logo.png" alt="Logo" class="logo">
+                GESPYME
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_tareas">Tareas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_proyectos">Proyectos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Usuarios</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre Usuario</th>
+                    <th scope="col">Primer Apellido</th>
+                    <th scope="col">Segundo Apellido</th>
+                    <th scope="col">Tipo Usuario</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.id_usuario }}</td>
+                    <td>{{ usuario.nombre_usuario }}</td>
+                    <td>{{ usuario.apellido_1_usuario }}</td>
+                    <td>{{ usuario.apellido_2_usuario }}</td>
+                    <td>{{ usuario.tipo_usuario }}</td>
+                    <td>
+                        <a href='/update_usuario/{{ usuario.id_usuario }}' class="btn btn-sm btn-primary">Editar</a>
+                        <a href='/delete_usuario/{{ usuario.id_usuario }}' class="btn btn-sm btn-danger">Borrar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="/add_usuario">Añadir Usuario</a>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 GESPYME. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

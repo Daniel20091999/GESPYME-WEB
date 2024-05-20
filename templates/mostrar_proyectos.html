@@ -1,47 +1,73 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titulo de nuestra página web (es lo que aparece en la pestaña)</title>
-    <!-- Aquí se pone todo lo que no aparece en el viewboard (lo que no ve el usuario que abre la página web) -->
-    <link rel="stylesheet" crossorigin="anonymous"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+    <title>GESPYME - Proyectos</title>
+    <link rel="icon" href="/static/logo/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Manager</th>
-                <th scope="col">Empleados</th>
-                <th scope="col">Tareas</th>
-                <th scope="col">Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for proyecto in proyectos %}
-            <tr>
-                <td>{{proyecto.id_proyecto}}</td>
-                <td>{{proyecto.nombre_proyecto}}</td>
-                <td>{{proyecto.manager_proyecto}}</td>
-                <td>{{proyecto.empleados_proyecto}}</td>
-                <td>{{proyecto.tareas_proyecto}}</td>
-                <td>{{proyecto.estado_proyecto}}</td>
-                <td><a href='update_proyecto/{{ proyecto.id_proyecto }}'>Editar</a></td>
-                <td><a href='delete_proyecto/{{ proyecto.id_proyecto }}'>Borrar</a></td>
-            </tr>
-            {% endfor %} <!-- para pcerrar el bloque jinja2 -->
-        </tbody>
-    </table>
-    <a class="btn btn-primary" href="/add_proyecto">Añadir Proyecto</a>
-    <script crossorigin="anonymous"
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" >
-	</script>
 
- 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="\static\logo\logo.png" alt="Logo" class="logo">
+                GESPYME
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_tareas">Tareas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_proyectos">Proyectos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Manager</th>
+                    <th scope="col">Empleados</th>
+                    <th scope="col">Tareas</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proyecto in proyectos %}
+                <tr>
+                    <td>{{ proyecto.id_proyecto }}</td>
+                    <td>{{ proyecto.nombre_proyecto }}</td>
+                    <td>{{ proyecto.manager_proyecto }}</td>
+                    <td>{{ proyecto.empleados_proyecto }}</td>
+                    <td>{{ proyecto.tareas_proyecto }}</td>
+                    <td>{{ proyecto.estado_proyecto }}</td>
+                    <td>
+                        <a href='update_proyecto/{{ proyecto.id_proyecto }}' class="btn btn-sm btn-primary">Editar</a>
+                        <a href='delete_proyecto/{{ proyecto.id_proyecto }}' class="btn btn-sm btn-danger">Borrar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/add_proyecto" class="btn btn-primary">Añadir Proyecto</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

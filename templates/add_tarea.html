@@ -1,47 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" crossorigin="anonymous"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+    <title>Añadir Tarea</title>
+    <link rel="icon" href="/static/logo/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h2>¡Añade una tarea!</h2>
-    <form action=""  method="POST">
-        <div class="form-group row">
-            <label for="">Id</label>
-            <input type="text" id="id_tarea" name="id_tarea" value="{{tarea.id_tarea}}">
-        </div>
-        <div class="form-group row">
-            <label for="">Tarea</label>
-            <input type="text" id="nombre_tarea" name="nombre_tarea" value="{{tarea.nombre_tarea}}">
-        </div>
-        <div class="form-group row">
-            <label for="">Fecha Inicio</label>
-            <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{tarea.fecha_inicio}}">
-        </div>
-        <div class="form-group row">
-            <label for="">Fecha Fin</label>
-            <input type="date" id="fecha_fin" name="fecha_fin" value="{{tarea.fecha_fin}}">
-        </div>
-        <div class="form-group row">
-            <label for="">Fecha Limite</label>
-            <input type="date" id="fecha_limite" name="fecha_limite" value="{{tarea.fecha_limite}}">
-        </div>
-        <div class="form-group row">
-            <label for="">Estado Tarea</label>
-            <input type="booleano" id="estado_tarea" name="estado_tarea" value="{{tarea.estado_tarea}}">
-        </div>
-        <button class="btn btn-primary" type="submit">Enviar</button>
-        <a class="btn btn-primary" href="/">Cancelar</a>
-    </form>
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="\static\logo\logo.png" alt="Logo" class="logo">
+                GESPYME
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_tareas">Tareas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_proyectos">Proyectos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <script crossorigin="anonymous"
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" >
-	</script>
+    <div class="container mt-5">
+        <h2>¡Añade una Tarea!</h2>
+        <form action="" method="POST">
+            <div class="mb-3">
+                <label for="id_tarea" class="form-label">ID de la Tarea</label>
+                <input type="text" class="form-control" id="id_tarea" name="id_tarea" value="{{tarea.id_tarea}}">
+            </div>
+            <div class="mb-3">
+                <label for="nombre_tarea" class="form-label">Nombre de la Tarea</label>
+                <input type="text" class="form-control" id="nombre_tarea" name="nombre_tarea" value="{{tarea.nombre_tarea}}">
+            </div>
+            <div class="mb-3">
+                <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{tarea.fecha_inicio}}">
+            </div>
+            <div class="mb-3">
+                <label for="fecha_fin" class="form-label">Fecha de Fin</label>
+                <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" value="{{tarea.fecha_fin}}">
+            </div>
+            <div class="mb-3">
+                <label for="fecha_limite" class="form-label">Fecha Límite</label>
+                <input type="date" class="form-control" id="fecha_limite" name="fecha_limite" value="{{tarea.fecha_limite}}">
+            </div>
+            <div class="mb-3">
+                <label for="estado_tarea" class="form-label">Estado de la Tarea</label>
+                <input type="text" class="form-control" id="estado_tarea" name="estado_tarea" value="{{tarea.estado_tarea}}">
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <a class="btn btn-secondary" href="/">Cancelar</a>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 GESPYME. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

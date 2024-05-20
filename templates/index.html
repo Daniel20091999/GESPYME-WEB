@@ -1,22 +1,57 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GESPYME</title>
-    <link rel="stylesheet" crossorigin="anonymous"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+    <link rel="icon" href="/static/logo/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <a href='mostrar_usuarios.html'>Usuarios</a>
-    <a href='mostrar_tareas.html'>Tareas</a>
-    <a href='mostrar_proyectos.html'>Proyectos</a>
-    <script crossorigin="anonymous"
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" >
-	</script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="\static\logo\logo.png" alt="Logo" class="logo">
+                GESPYME
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_tareas">Tareas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mostrar_proyectos">Proyectos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
- 
+    <div class="container text-center mt-5">
+        <div class="welcome-section">
+            <h1 class="display-4">Bienvenido a GESPYME</h1>
+            <p class="lead">Gestión integral de proyectos y tareas para tu empresa.</p>
+            <div class="btn-group-vertical mt-4">
+                <a href="/mostrar_usuarios" class="btn btn-primary btn-lg mb-3">Usuarios</a>
+                <a href="/mostrar_tareas" class="btn btn-primary btn-lg mb-3">Tareas</a>
+                <a href="/mostrar_proyectos" class="btn btn-primary btn-lg">Proyectos</a>
+            </div>
+        </div>
+    </div>
 
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 GESPYME. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
